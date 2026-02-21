@@ -3,20 +3,20 @@ name = "broken-app"
 version = "0.1.0"
 edition = "2024"
 
+[profile.release]
+debug = true
+split-debuginfo = "packed"
+
+[target.x86_64-pc-windows-msvc]
+rustflags = ["-C", "link-arg=/DEBUG"]
+
 [dependencies]
 
 [dev-dependencies]
-criterion = "0.5"
+criterion = "0.8.2"
+
 
 [[bench]]
-name = "baseline"
+name = "criterion"
+path = "benches/criterion.rs"
 harness = false
-
-[profile.release]
-debug = true
-debug-assertions = true
-incremental = false
-opt-level = 3
-lto = false
-split-debuginfo = "packed"
-strip = false
