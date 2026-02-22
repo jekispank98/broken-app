@@ -1,4 +1,5 @@
 use broken_app::{algo, average_positive, leak_buffer, normalize, sum_even};
+use broken_app::concurrency::race_increment;
 
 #[test]
 fn sums_even_numbers() {
@@ -66,4 +67,16 @@ fn test_dedup_regression() {
     assert_eq!(result, vec![1, 2, 3, 4]);
     let empty_input: Vec<u64> = vec![];
     assert!(algo::slow_dedup(&empty_input).is_empty());
+}
+
+#[test]
+fn test_concurrency_fix() {
+    let result = race_increment(1000, 4);
+    assert_eq!(result, 4000);
+}
+
+#[test]
+fn test_normalize_defects() {
+    let input = "  Hello   \t WORLD  ";
+    assert_eq!(normalize(input), "hello world");
 }
