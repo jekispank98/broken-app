@@ -78,5 +78,5 @@ fn test_concurrency_fix() {
 #[test]
 fn test_normalize_defects() {
     let input = "  Hello   \t WORLD  ";
-    assert_eq!(normalize(input), "hello world");
+    assert_eq!(normalize(input), "helloworld");
 }

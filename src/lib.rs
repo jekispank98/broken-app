@@ -21,8 +21,7 @@ pub fn leak_buffer(input: &[u8]) -> usize {
 pub fn normalize(input: &str) -> String {
     input
         .split_whitespace()
-        .collect::<Vec<_>>()
-        .join(" ")
+        .collect::<String>()
         .to_lowercase()
 }
 
